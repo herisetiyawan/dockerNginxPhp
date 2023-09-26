@@ -1,41 +1,55 @@
-version: '3'
+version: '3.7'
+
 services:
-
-  #PHP App
-  app:
-    build:
-      context: .
-      dockerfile: config/dockerfile
-    image: christexe/php:7.4-fpm-alpine
-    container_name: php_app
-    restart: unless-stopped
-    tty: true
-    environment:
-      SERVICE_NAME: app
-      SERVICE_TAGS: dev
-    working_dir: /var/www/html
-    volumes:
-      - ./code/:/var/www/html
-      - ./config/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
-    networks:
-      - labnet
-
-  #Nginx Service
   nginx:
-    image: nginx:alpine
-    container_name: nginx
-    restart: unless-stopped
-    tty: true
+    image: nginx:latest
+    container_name: heri-nginx
+    # restart: unless-stopped
     ports:
       - "80:80"
     volumes:
-      - ./code/:/var/www/html
-      - ./config/conf.d/:/etc/nginx/conf.d/
+      - ./config/conf.d:/etc/nginx/conf.d
+      - ./code/html:/var/www/html
+    depends_on:
+      - php-fpm
     networks:
-      - labnet
+      - mynetwork
 
-#Docker Networks
+  php-fpm:
+    image: php:8.0-fpm
+    container_name: heri-php-fpm
+    volumes:
+      - ./code:/var/www
+    networks:
+      - mynetwork
+
+  mysql:
+    image: mysql:latest
+    container_name: heri-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: project_db
+      MYSQL_USER: heri
+      MYSQL_PASSWORD: password
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+    networks:
+      - mynetwork
+
+  phpmyadmin:
+    image: arm64v8/phpmyadmin:latest
+    container_name: heri-phpmyadmin
+    ports:
+      - "8181:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: heri
+      PMA_PASSWORD: password
+    depends_on:
+      - mysql
+    networks:
+      - mynetwork
+
 networks:
-  labnet: 
-    external:
-      name: labnet
+  mynetwork:
+
