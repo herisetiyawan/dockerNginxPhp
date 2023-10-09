@@ -5,40 +5,29 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description"content="Demo application to show you the process of endTo-end payment using Jokul Checkout">
+    <meta name="description"
+          content="Demo application to show you the process of endTo-end payment using Jokul Checkout">
 
-    <title>Jokul Library Example Project</title>
+    <title>Jokul Checkout PHP Example Project</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/png"href="https://cdn-doku.oss-ap-southeast-5.aliyuncs.com/doku-ui-framework/doku/img/favicon.png"/>
+    <link rel="shortcut icon" type="image/png" href="https://cdn-doku.oss-ap-southeast-5.aliyuncs.com/doku-ui-framework/doku/img/favicon.png"/>
 
-    <!-- Bootstrap -->
-    <!--    <link rel="stylesheet"-->
-    <!--          href="https://cdn-doku.oss-ap-southeast-5.aliyuncs.com/doku-ui-framework/doku/stylesheet/css/bootstrap.css">-->
-    <!-- Custom Styling -->
     <link rel="stylesheet" href="https://cdn-doku.oss-ap-southeast-5.aliyuncs.com/doku-ui-framework/doku/stylesheet/css/main.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+    <!-- Load Jokul Checkout JS script -->
+    <script src="https://sandbox.doku.com/jokul-checkout-js/v1/jokul-checkout-1.0.0.js"></script>
 
     <script src="https://cdn-doku.oss-ap-southeast-5.aliyuncs.com/doku-ui-framework/doku/js/jquery-3.3.1.min.js"></script>
     <!-- Popper and Bootstrap JS -->
     <script src="https://cdn-doku.oss-ap-southeast-5.aliyuncs.com/doku-ui-framework/doku/js/popper.min.js"></script>
     <script src="https://cdn-doku.oss-ap-southeast-5.aliyuncs.com/doku-ui-framework/doku/js/bootstrap.min.js"></script>
 
-    <style>
-        .loader{
-            position: fixed;
-            left: 0px;
-            top: 0px;
-            width: 100%;
-            opacity: 0.7;
-            height: 100%;
-            z-index: 9999;
-            background: url('//upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Phi_fenomeni.gif/50px-Phi_fenomeni.gif') 
-                        50% 50% no-repeat rgb(249,249,249);
-        }
-    </style>
+
 </head>
 
 <body>
@@ -102,7 +91,7 @@
                             <div class="col-12">
                                 <div class="mb-3">
                                     <label>Name</label>
-                                    <input type="text" class="form-control dk-text-input" name="customerName"
+                                    <input type="text" class="form-control dk-text-input" id="customerName" name="customerName"
                                            placeholder="Anton Budiman"
                                            value="Anton Budiman" required>
                                     <div class="invalid-feedback">
@@ -112,7 +101,7 @@
 
                                 <div class="mb-3">
                                     <label>Email</label>
-                                    <input type="email" class="form-control dk-text-input" name="email"
+                                    <input type="email" class="form-control dk-text-input" id="email" name="email"
                                            placeholder="you@example.com"
                                            value="anton@budiman.com" required>
                                     <div class="invalid-feedback">
@@ -122,7 +111,7 @@
 
                                 <div class="mb-3">
                                     <label>Phone Number</label>
-                                    <input type="text" class="form-control dk-text-input" name="phoneNumber"
+                                    <input type="text" class="form-control dk-text-input" id="phoneNumber" name="phoneNumber"
                                            placeholder="6281111111111"
                                            value="6281111111111" required>
                                     <div class="invalid-feedback">
@@ -133,8 +122,8 @@
                                 <div class="mb-3">
                                     <label for="address">Address</label>
                                     <input type="text" class="form-control dk-text-input" id="address"
-                                           placeholder="Menara Mulia Lantai 8" name="address"
-                                           value="Menara Mulia Lantai 8" required>
+                                           placeholder="Menara Mulia" name="address"
+                                           value="Menara Mulia" required>
                                     <div class="invalid-feedback">
                                         Please enter your shipping address.
                                     </div>
@@ -144,7 +133,7 @@
                                     <div class="col-md-5 mb-3">
                                         <label for="country">Country</label>
                                         <select class="form-control" id="country" name="country" required>
-                                            <option value="Indonesia" selected>Indonesia</option>
+                                            <option value="ID" selected>Indonesia</option>
                                         </select>
                                         <div class="invalid-feedback">
                                             Please select a valid country.
@@ -167,26 +156,6 @@
                                                required>
                                         <div class="invalid-feedback">
                                             Postal code required.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12 mb-3">
-                                        <label>Payment Channel</label>
-                                        <select class="form-control" id="channel" name="channel" required>
-                                            <option value="bcava" selected>BCA VA</option>
-                                            <option value="bankmandiriva">Bank Mandiri VA</option>
-                                            <option value="bsiva">Bank Syariah Indonesia VA</option>
-                                            <option value="dokuva">DOKU VA</option>
-                                            <option value="briva">BRI VA</option>
-                                            <option value="creditcard">Credit Card</option>
-                                            <option value="shopeepay">ShopeePay</option>
-                                            <option value="ovo">OVO</option>
-                                            <option value="dw">DOKU Wallet</option>
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            Please select a valid country.
                                         </div>
                                     </div>
                                 </div>
@@ -252,7 +221,7 @@
                                 <div class="mb-3">
                                     <label>Client ID</label>
                                     <input type="text" class="form-control dk-text-input" id="clientId" name="clientId"
-                                           placeholder="BRN-0234-1680189385870" value="BRN-0234-1680189385870"
+                                           placeholder="MCH-0197-1687176144098" value="MCH-0197-1687176144098"
                                            required>
                                     <div class="invalid-feedback">
                                         Client ID is required.
@@ -263,7 +232,7 @@
                                     <label>Secret Key</label>
                                     <input type="text" class="form-control dk-text-input" id="sharedKey"
                                            name="sharedKey"
-                                           placeholder="SK-4ca6ijDaCzNSQyZjUZ4s" value="SK-4ca6ijDaCzNSQyZjUZ4s"
+                                           placeholder="SK-gTcg6LWFLD8SnO0BNW9p" value="SK-gTcg6LWFLD8SnO0BNW9p"
                                            required>
                                     <div class="invalid-feedback">
                                         Secret Key is required.
@@ -274,54 +243,12 @@
 
                                 <h4 class="mb-3">Payment Settings</h4>
 
-                                <hr class="my-3">
-
-                                <h4 class="mb-3">Virtual Account Settings</h4>
-
                                 <div class="mb-3">
-                                    <label for="vaReusable">VA Reusable</label>
-                                    <select class="form-control" id="vaReusable">
-                                        <option value="false" selected>FALSE</option>
-                                        <option value="true">TRUE</option>
-                                    </select>
-                                    <div class="invalid-feedback">
-                                        Reusable status is required.
-                                    </div>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="vaExpiredTime">Expired Time</label>
-                                    <input type="number" class="form-control dk-text-input" id="vaExpiredTime"
+                                    <label for="expiredTime">Expired Time</label>
+                                    <input type="number" class="form-control dk-text-input" id="expiredTime"
                                            placeholder="60" value="60">
                                     <div class="invalid-feedback">
                                         Expired Time is not valid.
-                                    </div>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="vaInfo1">Info 1</label>
-                                    <input type="text" class="form-control dk-text-input" id="vaInfo1" value="Info1"
-                                           placeholder="Free text 1">
-                                    <div class="invalid-feedback">
-                                        Info 1 is not valid.
-                                    </div>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="vaInfo2">Info 2</label>
-                                    <input type="text" class="form-control dk-text-input" id="vaInfo2" value="Info2"
-                                           placeholder="Free text 2">
-                                    <div class="invalid-feedback">
-                                        Info 2 is not valid.
-                                    </div>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="vaInfo3">Info 3</label>
-                                    <input type="text" class="form-control dk-text-input" id="vaInfo3" value="Info3"
-                                           placeholder="Free text 3">
-                                    <div class="invalid-feedback">
-                                        Info 3 is not valid.
                                     </div>
                                 </div>
 
@@ -334,17 +261,9 @@
         </div>
     </div>
 </div>
-<div id="loading" class="loader"></div>
-<div id="dialog" title="Basic dialog">
-  <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the &apos;x&apos; icon.</p>
-</div>
 </body>
 
 <script>
-    $(document).ready(function(){
-        $("#loading").hide();
-    })
-
     $("#formConfig").submit(function (e) {
         $('#configuration').modal('hide');
         Swal.fire({
@@ -358,15 +277,8 @@
         return false;
     });
 
-    function randomString(length, chars) {
-        var result = '';
-        for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
-        return result;
-    }
-
 
     $("#formRequestData").submit(function (e) {
-        $("#loading").show();
         let unindexed_array_config = $('#formConfig').serializeArray();
         let unindexed_array_payment_request = $('#formRequestData').serializeArray();
         let indexed_array = {};
@@ -379,117 +291,33 @@
             indexed_array[n['name']] = n['value'];
         });
 
-        let reusableStatusVal = $("#vaReusable option:selected").val();
-        let reusableStatus = false;
-        if (reusableStatusVal === 'true') {
-            reusableStatus = true;
-        }
-
-        indexed_array['amount'] = $("#amount").val();
-        indexed_array['expiredTime'] = parseInt($("#vaExpiredTime").val());
-        indexed_array['info1'] = $("#vaInfo1").val();
-        indexed_array['info2'] = $("#vaInfo2").val();
-        indexed_array['info3'] = $("#vaInfo3").val();
-        indexed_array['amount'] = $("#amount").val();
+        indexed_array['clientId'] = $("#clientId").val();
+        indexed_array['sharedKey'] = $("#sharedKey").val();
+        indexed_array['customerName'] = $("#customerName").val();
+        indexed_array['email'] = $("#email").val();
+        indexed_array['phoneNumber'] = $("#phoneNumber").val();
+        indexed_array['address'] = $("#address").val();
         indexed_array['country'] = $("#country option:selected").val();
-        indexed_array['reusableStatus'] = reusableStatus;
-        indexed_array['province'] = $("#province option:selected").val();
-        indexed_array['channel'] = $("#channel option:selected").val();
-        indexed_array['postalCode'] = $("#postalCode").val();
-        var invoiceNumber = randomString(20, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
-        indexed_array['invoiceNumber'] = invoiceNumber;
+        indexed_array['expiredTime'] = parseInt($("#expiredTime").val());
+        indexed_array['amount'] = $("#amount").val();
 
-        $channel = indexed_array['channel'];
-        console.log(JSON.stringify(indexed_array));
         $.ajax({
             type: "POST",
             dataType: "JSON",
             data: JSON.stringify(indexed_array),
-            url: "http://localhost/processing.php",
+            url: "jokul-checkout/jokul-checkout.php",
             contentType: "application/json",
             success: function (result) {
-                $("#loading").hide();
-                if ($channel == 'dokuva' || $channel == 'bankmandiriva' || $channel == 'bcava' || $channel == 'bsiva' || $channel == 'briva') {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Order Success',
-                        confirmButtonText: 'Close Instruction',
-                        html:
-                            '<h4>Your VA Number : ' + result.virtual_account_info.virtual_account_number + '</h4> ' +
-                            '<h5><a target="_blank" href="'+result.virtual_account_info.how_to_pay_page+'">Click here to see payment instructions</a></h5>',
-                        width: 1500,
-                    });
-                } else if ($channel == 'creditcard' ) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Order Success',
-                        confirmButtonText: 'Close Instruction',
-                        html:
-                            '<h4>Your Invoice Number : ' + result.order.invoice_number + '</h4> ' +
-                            '<iframe width="100%" height="700" src="'+result.credit_card_payment_page.url+'" frameborder="0"></iframe>',
-                        width: 1500,
-                    });
-                } else if ($channel == 'shopeepay') {
-                    window.open(result.shopeepay_payment.redirect_url_http, '_blank');
-                } else if ($channel == 'dw') {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Order Success',
-                        confirmButtonText: 'Close Instruction',
-                        html:
-                            '<h4>Your Invoice Number : ' + result.order.invoice_number + '</h4> ' +
-                            '<iframe width="100%" height="700" src="'+result.doku_wallet_payment_page.url+'" frameborder="0"></iframe>',
-                        width: 1500,
-                    });
-                } else if ($channel == 'ovo') {
-                    if (result.ovo_payment.status == "SUCCESS") {
-                        $status = 'success'
-                        $statusTitle = 'Success'
-                    } else {
-                        $status = 'error'
-                        $statusTitle = 'Failed'
-                    }
-                    Swal.fire({
-                        icon: $status,
-                        title: 'Order '.$statusTitle,
-                        confirmButtonText: 'Close Instruction',
-                        html:
-                            '<h4>Your Invoice Number : ' + result.order.invoice_number + '</h4> ' +
-                            '<h6>Your Amount         : ' + result.order.amount + '</h4> ' +
-                            '<h6>Your OVO ID         : ' + result.ovo_info.ovo_id + '</h4> ' +
-                            '<h6>Your OVO NAME       : ' + result.ovo_info.ovo_account_name + '</h4> ' +
-                            '<h6>Your OVO DATE       : ' + result.ovo_payment.date + '</h4> ' +
-                            '<h6>Your STATUS PAYMENT : ' + result.ovo_payment.status + '</h4>',
-                        width: 1500,
-                    });
-                }
+                loadJokulCheckout(result.response.payment.url);
             },
             error: function(xhr, textStatus, error){
-                console.log(error);
-                console.log(textStatus);
-                console.log(xhr);
-                $("#loading").hide();
                 Swal.fire({
                     icon: 'error',
                     title: 'Order Failed',
                     confirmButtonText: 'Close',
                 })
-            },
-            beforeSend: function() {
-                if ($channel == 'ovo') {
-                    $("#loading").hide();
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Order Pending',
-                        confirmButtonText: 'Close Instruction',
-                        html:
-                            '<h4>please make payment to the following account</h4> ' +
-                            '<h4>Your Invoice Number : ' + invoiceNumber + '</h4> ' +
-                            '<h6>Your Amount         : ' + indexed_array['amount'] + '</h4> ',
-                        width: 1500,
-                    });
-                }
             }
+
         });
         e.preventDefault();
         return false;

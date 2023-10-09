@@ -19,7 +19,7 @@ services:
     image: php:8.0-fpm
     container_name: heri-php-fpm
     volumes:
-      - ./code:/var/www
+      - ./code/html:/var/www/html
     networks:
       - mynetwork
 
